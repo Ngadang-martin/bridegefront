@@ -23,17 +23,17 @@ axiosRetry(bridge, { retries: 5 })
 //Response interceptor
 bridge.interceptors.response.use(
   (response: any) => {
-    try {
-      getResponseData(response)
-    } catch (error) {}
+    // try {
+    //   getResponseData(response)
+    // } catch (error) {}
 
     return response
   },
   async (error: any) => {
     // send log
-    try {
-      getResponseData(error)
-    } catch (error) {}
+    // try {
+    //   getResponseData(error)
+    // } catch (error) {}
     // all the error responses
     if (error.response) {
       switch (error.response.status) {
