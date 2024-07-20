@@ -267,7 +267,6 @@ onMounted(() => {
     axios.defaults.headers.common.Authorization = `Bearer${userInfo.value.token}`
   }
   console.log(import.meta.env.VITE_APP_API)
-
 })
 </script>
 
@@ -303,44 +302,65 @@ onMounted(() => {
 
     <div class="container mt-5 mb-5">
       <div class="d-flex justify-content-center mb-2">
-      <Button
-        label="Add a product"
-        icon="pi pi-check"
-        iconPos="right"
-        @click="isAthenticated ? (openAddProductModal = true) : (openLoginModal = true)"
-      />
-    </div>
+        <Button
+          label="Add a product"
+          icon="pi pi-check"
+          iconPos="right"
+          @click="isAthenticated ? (openAddProductModal = true) : (openLoginModal = true)"
+        />
+      </div>
 
-    <div class="d-flex justify-content-center row">
-      
+      <div class="d-flex justify-content-center row">
         <div class="col-md-10">
-            <div v-for="(item, index) in productDataList" class="row p-2  border mb-3 rounded">
-                <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" :src="imageUrl + 'images/' + item.image"></div>
-                <div class="col-md-6 mt-1">
-                    <h5>{{ item.name }}</h5>
-                    <div class="d-flex flex-row">
-                        <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span>310</span>
-                    </div>
-                    <p class="text-justify text-truncate para mb-0">{{ item.description }}<br><br></p>
-                </div>
-                <div class="align-items-center align-content-center col-md-3 border-left mt-1">
-                    <div class="d-flex flex-row align-items-center">
-                        <h4 class="mr-1">{{item.price}} XAF</h4>
-                    </div>
-                    <h6 class="text-success">Free shipping</h6>
-                    <div class="d-flex flex-column mt-4"><button class="btn btn-primary btn-sm" type="button" @click="
-              () => {
-                productData = item
-                isEditing = true
-                openAddProductModal = true
-              }
-            ">Edit</button><button class="btn btn-outline-primary btn-sm mt-2" type="button"  @click="isAthenticated ? deleteProduct(item.id) : (openLoginModal = true)">Delete </button></div>
-                </div>
+          <div v-for="(item, index) in productDataList" class="row p-2 border mb-3 rounded">
+            <div class="col-md-3 mt-1">
+              <img
+                class="img-fluid img-responsive rounded product-image"
+                :src="imageUrl + 'images/' + item.image"
+              />
             </div>
-           
+            <div class="col-md-6 mt-1">
+              <h5>{{ item.name }}</h5>
+              <div class="d-flex flex-row">
+                <div class="ratings mr-2">
+                  <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i
+                  ><i class="fa fa-star"></i>
+                </div>
+                <span>310</span>
+              </div>
+              <p class="text-justify text-truncate para mb-0">{{ item.description }}<br /><br /></p>
+            </div>
+            <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+              <div class="d-flex flex-row align-items-center">
+                <h4 class="mr-1">{{ item.price }} XAF</h4>
+              </div>
+              <h6 class="text-success">Free shipping</h6>
+              <div class="d-flex flex-column mt-4">
+                <button
+                  class="btn btn-primary btn-sm"
+                  type="button"
+                  @click="
+                    () => {
+                      productData = item
+                      isEditing = true
+                      openAddProductModal = true
+                    }
+                  "
+                >
+                  Edit</button
+                ><button
+                  class="btn btn-outline-primary btn-sm mt-2"
+                  type="button"
+                  @click="isAthenticated ? deleteProduct(item.id) : (openLoginModal = true)"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
 
     <Dialog v-model:visible="openLoginModal" modal header="Login" :style="{ width: '25rem' }">
       <span class="text-surface-500 dark:text-surface-400 block mb-8"
